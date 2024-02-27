@@ -27,8 +27,8 @@ jobs:
 
       - name: "Run phpmetrics and add Repository name to the result"
         run: |
-          ./phpmetrics.phar app/code/ --report-summary-json=./phpmetrics/${{ steps.repository.outputs.name }}.json
-          sed -i '1s/.*/{\n    "repository": "${{ steps.repository.outputs.name }}",/' ./phpmetrics/${{ steps.repository.outputs.name }}.json
+          ./phpmetrics.phar src/ --report-summary-json=./${{ steps.repository.outputs.name }}.json
+          sed -i '1s/.*/{\n    "repository": "${{ steps.repository.outputs.name }}",/' ./${{ steps.repository.outputs.name }}.json
 
       - name: "Show generated summary report"
         run: "cat ./*.json"
