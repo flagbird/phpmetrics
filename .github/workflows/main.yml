@@ -23,8 +23,7 @@ jobs:
 
       - name: "Test"
         run: |
-          echo "REPO=`echo ${{ github.repository }} | cut -d/ -f2`" >> $GITHUB_OUTPUT
-          cat /home/runner/work/_temp/_runner_file_commands/set_output_aae16f55-ac63-4768-83ce-d013f4c56d4d
+          echo "REPO=`echo '${{ github.repository }}1' | cut -d/ -f2`" >> $GITHUB_OUTPUT
 
       - name: "Test2"
         run: |
