@@ -21,6 +21,12 @@ jobs:
       - name: "Make phpmetrics executable"
         run: "chmod +x phpmetrics.phar"
 
+      - name: "Test"
+        run: |
+          echo "REPO=$(echo ${{ github.repository }} | cut -d/ -f2)" >> $GITHUB_OUTPUT
+          touch $REPO.json
+          ls $REPO.json
+
       - name: "Run phpmetrics"
         run: "./phpmetrics.phar src/ --report-summary-json=./report.json"
 
