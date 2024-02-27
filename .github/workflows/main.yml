@@ -23,7 +23,7 @@ jobs:
 
       - name: "Test"
         run: |
-          echo "REPO=`echo ${{ github.repository }} | cut -d/ -f2`" >> $GITHUB_ENV
+          echo "REPO=`echo ${{ github.repository }} | cut -d/ -f2`" >> $GITHUB_OUTPUT
           touch $REPO.json
           ls $REPO.json
 
