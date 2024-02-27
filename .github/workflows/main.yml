@@ -23,12 +23,14 @@ jobs:
 
       - name: "Test"
         run: |
-          echo "REPO=`echo '${{ github.repository }}1' | cut -d/ -f2`" >> $GITHUB_OUTPUT
+          echo "REPO=`echo ${{ github.repository }} | cut -d/ -f2`" >> $GITHUB_OUTPUT
+          echo "REPO2=${{ github.repository }}" >> $GITHUB_OUTPUT
 
       - name: "Test2"
         run: |
           touch $REPO.json
-          ls $REPO.json
+          touch $REPO2.json
+          ls *.json
 
       - name: "Run phpmetrics"
         run: "./phpmetrics.phar src/ --report-summary-json=./report.json"
