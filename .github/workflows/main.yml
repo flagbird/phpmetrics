@@ -24,12 +24,10 @@ jobs:
       - name: "Test"
         run: |
           echo "REPO=`echo ${{ github.repository }} | cut -d/ -f2`" >> $GITHUB_OUTPUT
-          echo "REPO2=${{ github.repository }}" >> $GITHUB_OUTPUT
-
       - name: "Test2"
         run: |
           touch $REPO.json
-          touch $REPO2.json
+          touch ${{ github.repository }}
           ls
 
       - name: "Run phpmetrics"
