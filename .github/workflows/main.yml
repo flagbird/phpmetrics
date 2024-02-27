@@ -21,18 +21,15 @@ jobs:
       - name: "Make phpmetrics executable"
         run: "chmod +x phpmetrics.phar"
 
-      - name: "Test"
+      - name: "id"
         id: test
         run: |
           echo "repo=`echo ${{ github.repository }} | cut -d/ -f2`" >> $GITHUB_OUTPUT
 
-      - name: "Test2"
+      - name: "Run phpmetrics and add Repository name to the result"
         run: |
-          touch ${{ steps.test.outputs.repo }}.json
-          ls ${{ steps.test.outputs.repo }}.json
-
-      - name: "Run phpmetrics"
-        run: "./phpmetrics.phar src/ --report-summary-json=./report.json"
+          ./phpmetrics.phar app/code/ --report-summary-json=./phpmetrics/${{ steps.test.repository.name }}.json
+          sed -i '1s/.*/{\n    "repository": "${{ steps.test.repository.name }}",/' ./phpmetrics/${{ steps.test.repository.name }}.json
 
       - name: "Show generated summary report"
-        run: "cat ./report.json"
+        run: "cat ./*.json"
