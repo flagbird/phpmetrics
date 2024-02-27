@@ -30,7 +30,7 @@ jobs:
         run: |
           touch $REPO.json
           touch $REPO2.json
-          ls *.json
+          ls
 
       - name: "Run phpmetrics"
         run: "./phpmetrics.phar src/ --report-summary-json=./report.json"
